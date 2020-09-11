@@ -1,0 +1,59 @@
+<!-- <div *ngIf="session">
+  <app-publisher [session]="session"></app-publisher>
+  <app-subscriber *ngFor="let stream of streams" [stream]="stream" [session]="session"></app-subscriber>
+</div>
+
+<div id="textchat">
+  <p id="history"></p>
+
+  <form (submit)="sendMessage($event)">
+    <input type="text" placeholder="Input your text here" id="msgTxt">
+  </form>
+  <div id="screen-preview"></div>
+  <button type="button" (click)="initScreenShareEvent()">
+    share screen
+  </button>
+</div>
+ -->
+
+<notifier-container></notifier-container>
+
+<!-- <div *ngIf="notificationResult && canNotificationVisible" class="alert alert-warning alert-dismissible fade show"
+  role="alert">
+  <strong>{{notificationResult?.notification}}</strong>
+  <div [innerHTML]="notificationResult?.notification_message | applimitTo : 200"></div>
+  <a *ngIf="notificationResult" (click)="closeNotification()" [routerLink]="['/notification',notificationResult?.reference_id]" class="linkApp">
+    <strong>Read More</strong> </a>
+
+  <button (click)="closeNotification()" type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <i class="fal fa-times"></i>
+  </button>
+</div> -->
+
+
+<div *ngIf="notificationResult && canNotificationVisible" class="alert alert-warning alert-dismissible fade show" role="alert">
+  <!-- <strong>Hello Title</strong> -->
+  <p [innerHTML]="notificationResult?.notification_message | applimitTo : 200">
+  </p>
+  <a *ngIf="notificationResult" (click)="closeNotification()"
+    [routerLink]="['/notification',notificationResult?.reference_id]" class="linkApp">
+    <strong>Read More</strong> </a>
+  <button (click)="closeNotification()" type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <i class="fal fa-times"></i>
+  </button>
+</div>
+
+
+
+<ngx-spinner bdOpacity=0.9 bdColor="rgba(51,51,51,0.8)" size="large" color="#ffcb1a" type="ball-clip-rotate-pulse"
+  [fullScreen]="true">
+  <p style="color: #000000"> <b>Please wait ...</b> </p>
+</ngx-spinner>
+<div [ngClass]="{
+    'sidebar_minimize' : isAdmin == true, 
+    'sidebar_minimize_hover' : isAdminHoverClassCast == true, 
+    'scholarbees-dashboard' : isDashboardClass == true,
+    'scholarbees-website' : isDashboardClass == false    
+}">
+  <router-outlet (activate)="onActivate($event)"></router-outlet>
+</div>

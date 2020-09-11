@@ -1,0 +1,340 @@
+<!-- <app-tutor-header class="main-header"></app-tutor-header>
+<app-sidebar></app-sidebar> -->
+
+<div class="main-panel app_dashboard">
+    <div class="container">
+        <div class="panel-header">
+            <div class="page-inner">
+                <div class="d-flex align-items-left align-items-md-center flex-column flex-md-row">
+                    <div>
+                        <h2 class="fw-bold">Dashboard</h2>
+                        <!-- <h5 class="mb-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h5> -->
+                    </div>
+                    <!-- <div class="ml-md-auto py-2 py-md-0">
+                        <a href="#" class="btn btn-white btn-border btn-round mr-2">Manage</a>
+                        <a href="#" class="btn btn-secondary btn-round">Add Customer</a>
+                    </div> -->
+                </div>
+                <app-profile-completion-note></app-profile-completion-note>
+            </div>
+        </div>
+        <div class="page-inner">
+            <div class="row page-sec-row mt--pagemrg">
+                <div class="col-12 col-xl-12  mb-5">
+                    <div class="card stats_all full-height">
+                        <div class="card-body">
+                            <div class="card_inn">
+                                <div class="col-12 section_header">
+                                    <div class="card-title pb-3"><span triggers="hover" [delay]="2000" [tooltip]="18 | tooltip" placement="bottom">Overall statistics</span></div>
+                                </div>
+                                <div class="d-flex flex-wrap justify-content-around pb-4 pt-4">
+                                    <div class="col-10 col-sm-6 col-md-3 stat_col text-center">
+                                        <a routerLink="/tutor/sessions" [queryParams]="{session_change:'pastsession'}" class="page-link">
+                                            <div class="stats_val" id="circles-1">
+                                                <div class="circles-wrp" style="position: relative; display: inline-block;">
+                                                    <circle-progress [showSubtitle]="false" [percent]="overallStatistics?.completeSessions" [radius]="40" [outerStrokeWidth]="10" [innerStrokeWidth]="8" [outerStrokeColor]="'#ffc211'" [innerStrokeColor]="'#e7e8ea'" [animation]="true" [animationDuration]="300"
+                                                        [showUnits]="false" [space]="-9" [showInnerStroke]="true">
+                                                    </circle-progress>
+                                                </div>
+                                            </div>
+                                            <h6 class="stats_label fw-bold"><span triggers="hover" [delay]="2000" [tooltip]="101 | tooltip" placement="bottom">Total Sessions Completed</span> </h6>
+                                        </a>
+                                    </div>
+                                    <div class="col-10 col-sm-6 col-md-3 stat_col text-center">
+                                        <a class="page-link" routerLink="/tutor/courses">
+                                            <div class="stats_val">
+                                                <div class="icon" style="margin-bottom: 5px;"><img src="../../../assets/img/icon-stats-04.png" alt="ICON">
+                                                </div>
+                                                <div class="val">{{overallStatistics?.course_offered }} </div>
+                                            </div>
+                                            <h6 class="stats_label fw-bold"><span triggers="hover" [delay]="2000" [tooltip]="102 | tooltip" placement="bottom">Courses Offered</span></h6>
+                                        </a>
+                                    </div>
+                                    <div class="col-10 col-sm-6 col-md-3 stat_col text-center">
+                                        <a class="page-link">
+                                            <div class="stats_val">
+                                                <div class="icon"><img src="../../../assets/img/icon-stats-03.png" alt="ICON">
+                                                </div>
+                                                <div class="val">{{overallStatistics?.totalHours }} <small class="smltxt">hrs</small></div>
+                                            </div>
+                                            <h6 class="stats_label fw-bold"><span triggers="hover" [delay]="2000" [tooltip]="103 | tooltip" placement="bottom">Total Hours</span></h6>
+                                        </a>
+                                    </div>
+                                    <div class="col-10 col-sm-6 col-md-3 stat_col text-center">
+                                        <a (click)="target(monthly)" class="page-link">
+                                            <div class="stats_val">
+                                                <div class="icon"><img src="../../../assets/img/icon-stats-01.png" alt="ICON">
+                                                </div>
+                                                <div class="val">{{overallStatistics?.totalEarnings }}</div>
+                                            </div>
+                                            <h6 class="stats_label fw-bold"><span triggers="hover" [delay]="2000" [tooltip]="104 | tooltip" placement="bottom">Total Earnings</span></h6>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="d-flex flex-wrap justify-content-around pb-4 pt-4">
+                                    <div class="col-10 col-sm-6 col-md-3 stat_col text-center" >
+                                        <a *ngIf="overallStatistics?.tutor_slug" [routerLink]="['/tutor/ratings',overallStatistics?.tutor_slug]" class="page-link">
+                                            <!-- <a class="page-link" (click)="navigateTo(overallStatistics?.tutor_slug)"> -->
+                                            <div class="stats_val">
+                                                <div class="icon"><img src="../../../assets/img/icon-stats-05.png" alt="ICON">
+                                                </div>
+                                                <div class="val">{{overallStatistics?.tutor_reviews?.average_rating }}
+                                                </div>
+                                            </div>
+                                            <h6 class="stats_label fw-bold"><span triggers="hover" [delay]="2000" [tooltip]="105 | tooltip" placement="bottom">Reviews</span></h6>
+                                            <span style="font-size: 13px;opacity: 0.9;padding-top: 2px;">
+                                                Total reviews Submited : {{overallStatistics?.tutor_reviews?.reviews_count}}
+                                            </span>
+                                        </a>
+                                    </div>
+                                    <div class="col-10 col-sm-6 col-md-3 stat_col text-center" >
+                                        <a class="page-link" *ngIf="overallStatistics?.tutor_slug" [routerLink]="['/tutor/followers',overallStatistics?.tutor_slug]">
+                                            <div class="stats_val">
+                                                <div class="icon"><img src="../../../assets/img/icon-stats-02.png" alt="ICON">
+                                                </div>
+                                                <div class="val">{{overallStatistics?.totalFollowers }}
+                                                </div>
+                                            </div>
+                                            <h6 class="stats_label fw-bold"><span triggers="hover" [delay]="2000" [tooltip]="106 | tooltip" placement="bottom">Total Followers</span></h6>
+                                        </a>
+                                    </div>
+                                    <div class="col-10 col-sm-6 col-md-3 stat_col text-center">
+                                        <a [routerLink]="['/tutor/requests']" [queryParams]="{request: ['Open']}" class="page-link">
+                                            <div class="stats_val">
+                                                <div class="icon"><img src="../../../assets/img/video-conference.png" alt="ICON">
+                                                </div>
+                                                <div class="val">{{overallStatistics?.session_requests}}
+                                                </div>
+                                            </div>
+                                            <h6 class="stats_label fw-bold"><span triggers="hover" [delay]="2000" [tooltip]="107 | tooltip" placement="bottom">New Sessions Request</span></h6>
+                                        </a>
+                                    </div>
+                                    <div class="col-10 col-sm-6 col-md-3 stat_col text-center">
+                                    </div>
+                                </div>
+
+                            </div>
+                            <!-- </div> -->
+                            <div class="card_inn_session">
+                                <div class="row page-sec-row">
+                                    <div class="col-12 section_header">
+                                        <div class="card-title pb-3"><span triggers="hover" [delay]="2000" [tooltip]="19 | tooltip" placement="bottom">Today’s Sessions ({{countListing1}})</span></div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="card_sec">
+                                            <div class="table-responsive">
+                                                <table class="table todayssessionTable">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Session Name</th>
+                                                            <th>Session Type</th>
+                                                            <th>Student</th>
+                                                            <!-- <th>Date</th> -->
+                                                            <th>Start Time</th>
+                                                            <th>End Time</th>
+                                                            <th>Status</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <ng-template *ngIf="!sessionNodataAlert" ngFor let-session [ngForOf]="sessionListing" let-i="index">
+                                                            <tr>
+                                                                <td>
+                                                                    <!--  -->
+                                                                    <div *ngIf="session?.course && session.course?.course_type=='Group'" class="icon"><img src="../../../assets/img/icon-online.png" alt="img" /></div>
+                                                                    <div *ngIf="session?.course && session.course.course_type=='1-1'" class="icon"><img src="../../../assets/img/icon-one-to-one.png" alt="img" /></div>
+                                                                    <div *ngIf="session.session_type=='1-1'" class="icon"><img src="../../../assets/img/icon-one-to-one.png" alt="img" /></div>
+                                                                    <div class="session_ele">
+                                                                        <!-- <div class="img_wrap" style="background-image: url('../../../assets/img/session-img-sml.jpg')"></div> -->
+                                                                        <a *ngIf="session?.session_type == '1-1'" [routerLink]="['/tutor/sessions',session?.session_ref]">
+                                                                            <p class="titlesession">{{session?.session_topic }}</p>
+                                                                        </a>
+                                                                        <a *ngIf="session?.session_type == 'course'" [routerLink]="['/course/session-detail',session?.session_ref]">
+                                                                            <p class="titlesession">{{session?.session_topic }}</p>
+                                                                        </a>
+                                                                    </div>
+                                                                </td>
+                                                                <td>
+                                                                    <div class="session_type">
+                                                                        <!-- <div class="icon"><img src="../../../assets/img/icon-online.png" alt="img" /></div> -->
+                                                                        <span>{{session?.session_type | titlecase}}</span>
+                                                                    </div>
+                                                                </td>
+                                                                <td>
+                                                                    <span *ngIf="session?.session_type=='1-1'">
+                                                                    {{session?.student_name}}
+                                                                </span>
+                                                                    <span *ngIf="session?.session_type=='course'">
+                                                                    Various
+                                                                </span>
+                                                                </td>
+                                                                <!-- <td>
+                                                                <span class="numtxt">{{dateConverter2(session?.session_date_time)}}</span>
+                                                            </td> -->
+                                                                <td>
+                                                                    <span class="numtxt">{{dateConverter(session?.session_date,session?.session_start_time)}}</span>
+                                                                </td>
+                                                                <td>
+                                                                    <span class="numtxt">{{dateConverter(session?.session_date,session?.session_end_time)}}</span>
+                                                                </td>
+                                                                <td>
+                                                                    <span class="numtxt">{{session?.status}}</span>
+                                                                    <!-- <span *ngIf="session?.session_type=='1-1'" class="numtxt"> - </span> -->
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="spacer"></tr>
+                                                        </ng-template>
+                                                        <tr *ngIf="sessionNodataAlert">
+                                                            <td colspan="7" style="text-align:center"> No data found
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- <div class="row page-sec-row">
+                                    <div class="col-12 section_header">
+                                        <div class="card-title pb-3">New Session Requests ({{countListing2}}) </div>
+                                        <div class="filter_elements">
+                                            <label>Filters</label>
+                                            <div class="form-group">
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="card_sec">
+                                            <div class="table-responsive">
+                                                <table class="table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Student Name</th>
+                                                            <th>Session Name</th>
+                                                            <th>Session Date</th>
+                                                            <th>Session Time</th>
+                                                            <th>Request Date</th>
+                                                            <th>Session Amount</th>
+                                                            <th> Status </th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <ng-template *ngIf="!requestNodataAlert" ngFor let-request [ngForOf]="requestListing" let-i="index">
+                                                        <tr>
+                                                            <td>
+                                                                <div class="session_ele">
+                                                                    <div class="img_wrap" *ngIf="request?.user_profile?.image"
+                                                                        [ngStyle]="{'background-image': 'url(' + request?.user_profile?.image + ')'}" >
+                                                                    </div>
+                                                                    <div class="img_wrap" style="background-image: url('../../../assets/img/avatar-student-male.png')"></div>
+                                                                    <p>{{request?.user_profile?.first_name}} {{request?.user_profile?.last_name}}</p>
+                                                                </div>
+                                                            </td>
+                                                            <a routerLink="/tutor/sessions/{{Data?.reference_id}}"></a>
+                                                            <td>
+                                                                <a routerLink="/tutor/sessions/{{request?.reference_id}}">{{getSubjectName(request.course_description)}} </a>
+                                                            </td>
+                                                            <td>
+                                                                <span class="numtxt">{{dateConverter2(request?.slots?.session_date)}}</span>
+                                                            </td>
+                                                            <td>
+                                                                    <span class="numtxt">{{request?.slots?.start_time}} - {{request?.slots?.end_time}} </span>
+                                                            </td>
+                                                            <td>
+                                                                <span class="numtxt">{{request?.created_at | date: 'MMM d, y'}}</span>
+                                                            </td>
+                                                            <td>
+                                                                <span class="numtxt">{{request?.total_amount}}</span>
+                                                            </td>
+                                                            <td>
+                                                                <span class="status" [ngClass]="request?.order_status" >{{request?.order_status}}</span>
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="spacer"></tr>
+                                                        </ng-template>
+                                                        <tr *ngIf="requestNodataAlert">
+                                                            <td colspan="7" style="text-align:center" > No data found
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div> -->
+                                <div class="row page-sec-row">
+                                    <div class="col-12">
+                                        <div class="upcoming_sessions">
+                                            <div class="card_header pl-0 pr-0 pt-0">
+                                                <h2><span triggers="hover" [delay]="2000" [tooltip]="20 | tooltip" placement="bottom">Upcoming Sessions</span></h2>
+                                                <div class="section-filter">
+                                                    <div class="custom_Select">
+                                                        <select (change)="getUpcomingSessions($event)">
+                                                            <option value="week">Current Week</option>
+                                                            <option value="month">Current Month</option>
+                                                            <option value="year">Current Year</option>
+                                                        </select></div>
+                                                </div>
+                                            </div>
+                                            <div class="card_body">
+
+                                                <div class="chart_div">
+                                                    <!-- <canvas height="100" baseChart [datasets]="barChart2Data" [labels]="barChart2Labels"
+                                                        [options]="barChart2Options" [legend]="barChart2Legend"
+                                                        [chartType]="barChart2Type" [chartType]="barChart2Type"
+                                                        [colors]="barChart2Colors">
+                                                    </canvas> -->
+                                                    <canvas #myChart1 height="100"></canvas>
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+                                        <!-- /.upcoming_sessions -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 col-xl-12">
+                    <div class="card stats_monthly full-height">
+                        <div class="card-body">
+                            <div #monthly class="card-title"><span triggers="hover" [delay]="2000" [tooltip]="21 | tooltip" placement="bottom">Monthly Income Statistics </span>
+                            </div>
+                            <div class="row pt-4">
+                                <div class="chart_wrap">
+                                    <div class="barChart">
+                                        <div class="custom_Select">
+                                            <select (change)="getMonthlyIncomeStatisticsByYear($event)">
+                                                <option *ngFor="let year of yearsArr" value="{{year}}">{{year}}</option>
+                                            </select>
+                                        </div>
+                                        <div class="chart_div">
+                                            <!-- <canvas baseChart [datasets]="barChartData" [options]="barChartOptions" [legend]="barChartLegend" [labels]="barChartLabels" [chartType]="barChartType" [chartType]="barChartType" [colors]="barChartColors">
+                                            </canvas> -->
+                                            <canvas #myChart2 height="100"></canvas>
+
+                                        </div>
+                                    </div>
+                                    <div class="chart_txt">
+                                        <div class="row">
+                                            <div class="chart-lbl col-12 col-sm-6">Total Income in {{monthlyAvgIncomeYear}} <b>{{monthlyIncome}}</b>
+                                            </div>
+                                            <div class="chart-lbl col-12 col-sm-6">Average monthly Income <b>{{monthlyAvgIncome}}</b>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+        </div>
+    </div>
+</div>
